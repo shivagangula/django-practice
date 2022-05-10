@@ -12,6 +12,12 @@ from .renders import SerializerDataRender
 
 
 class Empolyee_curd_operation(APIView):
+    """ 
+    its provide single employee info
+    its provide single employee info update
+    its provide single employee info delete
+
+    """
     # authentication_classes = None
     # permission_classes = None
     renderer_classes = [SerializerDataRender]
@@ -25,7 +31,7 @@ class Empolyee_curd_operation(APIView):
         try:
             return Empolyee.objects.get(uuid=uuid)
         except Empolyee.DoesNotExist:
-            raise Response()
+            return Response({"status":"failed"}, status= status.HTTP_404_NOT_FOUND)
 
     def get(self, request, uuid, format=None):
         employee = self.get_object(uuid)
@@ -47,6 +53,10 @@ class Empolyee_curd_operation(APIView):
 
 class Empolyee_create_list(APIView):
 
+    """
+    its providing list employees
+    create new employee
+    """
     renderer_classes = [SerializerDataRender]
     
     def get(self, request, format=None):
@@ -56,7 +66,6 @@ class Empolyee_create_list(APIView):
 
 
     def post(self, request, format=None):
-        print("req" ,request.data)
         serializer = CreateListEmployeeSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()

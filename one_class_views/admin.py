@@ -1,7 +1,22 @@
 from django.contrib import admin
-from .models import Department, Empolyee
+from .models import Department, Empolyee, Company
 # Register your models here.
 
 
-admin.site.register(Department)
-admin.site.register(Empolyee)
+
+
+
+@admin.register(Department)
+class DepartmentAdmin(admin.ModelAdmin):
+    list_display  = ['company', 'name']
+
+
+@admin.register(Empolyee)
+class EmpolyeeAdmin(admin.ModelAdmin):
+    list_display  = ['department', 'name']
+
+
+@admin.register(Company)
+class CompanyAdmin(admin.ModelAdmin):
+    list_display  = ['name']
+

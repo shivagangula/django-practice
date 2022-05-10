@@ -1,21 +1,43 @@
-from .models import Department, Empolyee
+from .models import Department, Empolyee, Company
 from rest_framework import serializers
 from .message import MessageValidations
+from django.db.models import Count
 
 
 
+class CompanySerializer(serializers.ModelSerializer):
+    no_of_departments =  serializers.SerializerMethodField()
+
+    no_of_employes = serializers.SerializerMethodField()
+
+    def get_no_of_employes(self, obj):
+        return obj.company.values('company').aggregate(emp_count = Count('employees')).get('emp_count')
+
+    def get_no_of_departments(self, obj):
+        return obj.company.count()
+
+    class Meta:
+        model = Company
+        fields = [
+            'name',
+            'uuid',
+            'no_of_departments',
+            'no_of_employes'
+        ]
 
 
 class DepartmentSerializer(serializers.ModelSerializer):
+    no_of_employes =  serializers.IntegerField(read_only=True, required=False)
     
+    company = CompanySerializer(read_only=True, required=False)
 
     class Meta:
         model = Department
         fields = [
+            'company',
             'name',
             'uuid',
-            'updated_at',
-            'created_at'
+            'no_of_employes'           
         ]
 
 

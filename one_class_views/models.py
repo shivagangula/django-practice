@@ -9,7 +9,21 @@ class BaseField(models.Model):
        abstract = True
 
 
+
+class Company(BaseField):
+    uuid = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)
+    name  = models.CharField(max_length=25, blank=False, null=False)
+
+    def __str__(self):
+        return f"{self.name} : {self.uuid}"
+
 class Department(BaseField):
+    company = models.ForeignKey(
+                    Company,
+                    related_name='company', 
+                    on_delete=models.CASCADE, 
+                    blank=True, 
+                    null=True)
     uuid = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)
     name  = models.CharField(max_length=25, blank=False, null=False)
     
