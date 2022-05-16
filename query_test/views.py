@@ -1,9 +1,17 @@
+from django.db.models import CharField
+from django.db.models.functions import Cast
 from django.db.models import Value as V
-from django.db.models.functions import StrIndex, Replace, Upper, Substr, Trim, Concat, Length
+from django.db.models.functions import (
+    StrIndex, Replace, Upper, Substr, Trim, Concat, Length )
 from django.shortcuts import render
 from .models import Worker, Bonus, Title
 from django.db.models import F, Count, Q
+import time
 
+
+#start = time.time()
+#end = time.time()
+#print("The time of execution of above program is :", end-start)
 
 def test(): ...
 
@@ -121,17 +129,46 @@ q = Worker.objects.filter(
 #print(q.values('worker_name', 'salary'))
 
 # Q-23 Write an SQL query to fetch the no. of workers for each department in the descending order
-q = Worker.objects.values('department').annotate(emp_count = Count('department')).order_by('-department')
-#print(q)
+q = Worker.objects.values('department').annotate(
+    emp_count=Count('department')).order_by('-department')
+# print(q)
 
 # Q-24. Write an SQL query to print details of the Workers who are also Managers.
 
 q = Worker.objects.filter(title__worker_title='Manager')
-#print(q.values('first_name','title__worker_title'))
+# print(q.values('first_name','title__worker_title'))
 
 # Q-25. Write an SQL query to fetch duplicate records having matching data in some fields of a table
 
-q = Worker.objects.annotate(name_count = Count('first_name')).filter(
-    name_count__gt = 1
-)
-print(q.values('first_name'))
+q = Worker.objects.values('first_name').annotate(name_count=Count('first_name')).filter(name_count__gt=1)
+#print(q.values('first_name', 'name_count')) 
+
+
+# Q-26. Write an SQL query to show only odd rows from a table
+q = Worker.objects.annotate(
+    is_odd_id=F('id') % 2).filter(is_odd_id=True)
+# print(q.values('is_odd_id'))
+
+q = Worker.objects.filter(id__iregex='^\d*[13579]$')
+# print(q.values('id'))
+
+
+# Q-28. Write an SQL query to clone a new table from another table.
+
+# Q-29. Write an SQL query to fetch intersecting records of two tables.
+# https://docs.djangoproject.com/en/4.0/ref/models/querysets/#intersection
+
+# Q-32. Write an SQL query to show the top n (say 10) records of a table.
+q = Worker.objects.all().order_by('-salary')[:3]
+#print(q.values('first_name', 'salary'))
+
+# Q-33. Write an SQL query to determine the nth (say n=5) highest salary from a table.
+q = Worker.objects.all().order_by('-salary').first()
+# print(q.salary)
+
+# Q-35. Write an SQL query to fetch the list of employees with the same salary.
+q = Worker.objects.values('salary').annotate(
+    salary_count = Count('salary')
+).filter(salary_count__gt= 1)
+print(q.values('salary', 'salary_count'))
+
