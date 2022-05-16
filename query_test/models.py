@@ -1,4 +1,5 @@
 from django.db import models
+from django.db.models import Q
 import uuid
 
 class CommonFieldMixinModel(models.Model):
@@ -52,4 +53,23 @@ class Title(CommonFieldMixinModel):
 
 
 
+# transaction model test
 
+class TableOne(CommonFieldMixinModel):
+    data = models.CharField(max_length=10)
+
+    class Meta:
+        db_table = 'tbl_one'
+        app_label = 'query_test'
+        get_latest_by = "updated_at"
+        #constraints = [
+        #    models.CheckConstraint(check = Q(data='Mindblow'), name='check_data'),]
+        # date base level contrains
+        # https://www.w3schools.com/sql/sql_constraints.asp
+        # https://docs.djangoproject.com/en/4.0/ref/models/constraints/#module-django.db.models.constraints
+        
+
+class TableTwo(CommonFieldMixinModel):
+    table_one_data =  models.ForeignKey(TableOne, on_delete= models.CASCADE)
+    class Meta:
+        order_with_respect_to = 'table_one_data'

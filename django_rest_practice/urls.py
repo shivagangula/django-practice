@@ -1,4 +1,5 @@
-from query_test.views import *
+#from query_test.views import *
+from query_test.trans_query import *
 from django.contrib import admin
 from django.urls import path, include
 from one_class_views.models import Empolyee, Department
