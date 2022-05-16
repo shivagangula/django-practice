@@ -2,10 +2,10 @@ from django.db.models import CharField
 from django.db.models.functions import Cast
 from django.db.models import Value as V
 from django.db.models.functions import (
-    StrIndex, Replace, Upper, Substr, Trim, Concat, Length )
+    StrIndex, Replace, Upper, Substr, Trim, Concat, Length)
 from django.shortcuts import render
 from .models import Worker, Bonus, Title
-from django.db.models import F, Count, Q
+from django.db.models import F, Count, Q, Max, Sum
 import time
 
 
@@ -140,8 +140,9 @@ q = Worker.objects.filter(title__worker_title='Manager')
 
 # Q-25. Write an SQL query to fetch duplicate records having matching data in some fields of a table
 
-q = Worker.objects.values('first_name').annotate(name_count=Count('first_name')).filter(name_count__gt=1)
-#print(q.values('first_name', 'name_count')) 
+q = Worker.objects.values('first_name').annotate(
+    name_count=Count('first_name')).filter(name_count__gt=1)
+#print(q.values('first_name', 'name_count'))
 
 
 # Q-26. Write an SQL query to show only odd rows from a table
@@ -167,8 +168,58 @@ q = Worker.objects.all().order_by('-salary').first()
 # print(q.salary)
 
 # Q-35. Write an SQL query to fetch the list of employees with the same salary.
-q = Worker.objects.values('salary').annotate(
-    salary_count = Count('salary')
-).filter(salary_count__gt= 1)
-print(q.values('salary', 'salary_count'))
 
+salary_list = Worker.objects.values('salary').annotate(
+    salary_count=Count('salary')
+).filter(salary_count__gt=1).values_list('salary', flat=True)
+
+q = Worker.objects.filter(salary__in=salary_list)
+#print(q.values('first_name', 'salary'))
+#The time of execution of above program is : 0.0036687850952148438
+
+
+#q = Worker.objects.filter(salary__in=Worker.objects.values('salary').annotate(
+#    salary_count=Count('salary')
+#).filter(salary_count__gt=1).values_list('salary', flat=True))
+#The time of execution of above program is : 0.005208015441894531
+
+
+# Q-39. Write an SQL query to fetch the first 50% records from a table.
+
+no_workers = Worker.objects.all().count()
+#The time of execution of above program is : 0.0007348060607910156 - Faster
+
+#no_workers = Worker.objects.aggregate(Count('id'))
+#The time of execution of above program is : 0.001260519027709961
+
+q = Worker.objects.all()[:no_workers/2]
+#print(q.count())
+
+q = Worker.objects.all()[:Worker.objects.all().count()/2]
+#print(q.count())
+# The time of execution of above program is : 0.002501249313354492
+
+
+#Q-40. Write an SQL query to fetch the departments that have less than five people in it.
+q =  Worker.objects.values('department').annotate(dep_emp_count =  Count('department')).filter(
+    dep_emp_count__lt = 3)
+#print(q.query)
+
+# Q-45. Write an SQL query to print the name of employees having the highest salary in each department.
+
+max_salary = Worker.objects.values('department').annotate(
+    Count(F('department'))
+).annotate(
+    salary_max = Max('salary')
+).values_list('salary_max', flat=True)
+
+q = Worker.objects.filter(salary__in = max_salary)
+
+#print(q)
+
+# Q-49. Write an SQL query to fetch departments along with the total salaries paid for each of them.
+
+q = Worker.objects.values('department').annotate(
+    department_salary_total =  Sum('salary')
+)
+print(q)
