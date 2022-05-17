@@ -1,5 +1,5 @@
 #from query_test.views import *
-from query_test.trans_query import *
+from query_test.trans_query import TranscationTestview
 from django.contrib import admin
 from django.urls import path, include
 from one_class_views.models import Empolyee, Department
@@ -38,6 +38,9 @@ urlpatterns = [
     #query practice
     path('emloyees/department/', EmployeeCountPerDepartmentList.as_view(),name="em_deparment_count"),
     path('emloyees/high/company/', FindHighestEmployeeCompany.as_view(),name="max_company_employee_count"),
+
+   #Transcation Test
+    path('trans/', TranscationTestview.as_view(),name="TranscationTestview"),
 
 
 ]

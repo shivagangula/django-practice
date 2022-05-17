@@ -51,6 +51,7 @@ class EmployeeSerializer(serializers.ModelSerializer, MessageValidations):
         return data
 
     def update(self, instance, validated_data):
+        # update child too
         departments_instance = instance.department
         department_data = validated_data.get('department')
         if department_data:

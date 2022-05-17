@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Worker, Bonus, Title
+from .models import Worker, Bonus, Title, TableOne, TableTwo
 # Register your models here.
 
 
@@ -19,4 +19,13 @@ class BonusAdmin(admin.ModelAdmin):
 @admin.register(Title)
 class TitleAdmin(admin.ModelAdmin):
     list_display  = ['worker', 'worker_title']
+
+
+@admin.register(TableOne)
+class TableOneAdmin(admin.ModelAdmin):
+    list_display  = ['data']
+
+@admin.register(TableTwo)
+class TableTwoAdmin(admin.ModelAdmin):
+    list_display  = ['table_one_data']
 

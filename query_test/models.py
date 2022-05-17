@@ -56,10 +56,9 @@ class Title(CommonFieldMixinModel):
 # transaction model test
 
 class TableOne(CommonFieldMixinModel):
-    data = models.CharField(max_length=10)
+    data = models.CharField(max_length=12)
 
     class Meta:
-        db_table = 'tbl_one'
         app_label = 'query_test'
         get_latest_by = "updated_at"
         #constraints = [
@@ -71,5 +70,6 @@ class TableOne(CommonFieldMixinModel):
 
 class TableTwo(CommonFieldMixinModel):
     table_one_data =  models.ForeignKey(TableOne, on_delete= models.CASCADE)
+    data = models.CharField(max_length=12, blank=False, null=False)
     class Meta:
         order_with_respect_to = 'table_one_data'
