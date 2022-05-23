@@ -1,0 +1,96 @@
+Basic Serializers
+    - Normal Serializers
+    - Model Serializers
+        - Override Create, update Methods
+        - Validations 
+             - Field Level
+             - Objcect Level
+             - outside Validators
+        - Partial update
+        - serialize and de-serialize multiple objects
+        - serializer context
+        - meta options
+            -explicitly fields
+            -read only fields
+            - extra kwargs
+    - HyperLinkedModel serializer
+         - absoulte and relative urls
+         - HypyerLinkedIdentityField and HyperLinkedRealtionField
+    - List Serializers
+        - create and update list of objects
+    - Base Serializers
+    - to_represantion
+    - Advanced
+       -overide serialize , de - serialize behoviour
+    - serializer inhertance
+    - Dynamic field modification
+Serializers Fields 
+    -attributes
+        - read_only
+        - write_only
+        - required
+        - default
+        - allow_null
+        - source
+        - error_messages
+        - initial
+        - style
+    - Types of fields
+       - Boolon fields
+           -BooleanField()
+           - NullBooleanField() 
+       - String fileds
+          - CharField()
+          - EmailFields()
+          - RegexField()
+          - SlugField()
+          - URLField()
+          - UUIDField()
+          - FIlePathField()
+          - IPAddressField()
+       -Numric Fields
+          - IntegerField()
+          - FloatField()
+          - DecimalField()
+       -Date time fields
+          - DateField()
+          - TimeField()
+          - DateTimeField()
+          - DurationField()
+       - Choices/Selection fields
+          - ChoiceField()
+          - MultipleChoiceField()
+       - FileUpload Fields
+          - FileField()
+          - imageField()
+       - Composite Fields
+          - ListField()
+          -DictField()
+          -JsonField()
+       - outher fields
+          -ReadonlyFied()
+          -HiddenField()
+          -ModelField()
+          -SerializerMethodField()
+       -Custom Fields
+Serializers Relations
+-Normal relations
+   - StringReleatedField
+   - PrimaryKeyRelatedField
+   - HyperLinkdeRelatedField
+   - SlugRelatedField
+   - HypyerLinkedIdentityField
+- Nested Relationships
+   - nested de-serializers 
+   - nsested serializers
+- Custom Relation fields
+-Custom HyperLinkedFields
+-Reverse Relationships
+-Generic Relationships
+-Many to many relations
+
+
+           
+
+
+

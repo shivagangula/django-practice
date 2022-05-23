@@ -1,6 +1,6 @@
 .\wenv\Scripts\activate
 
-cd core
+cd django-practice
 
 python manage.py runserver
 
