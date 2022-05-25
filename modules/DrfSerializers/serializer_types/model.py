@@ -73,6 +73,7 @@ class ModelSerializerAPI(generics.GenericAPIView):
         return Response(
                 {'status': 'succuss', 'data': ser_data.data},
                 status=status.HTTP_200_OK)
+                
     def put(self, request, *args, **kwarg):
         ser_data = ForestSerializer(data = request.data, many=True)
         if ser_data.is_valid():

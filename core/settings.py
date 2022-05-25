@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'modules.QueryPractice.apps.QuerypracticeConfig' ,
     'modules.DrfRenders.apps.DrfrendersConfig' ,
     'modules.DrfSerializers.apps.DrfserializersConfig' ,
+    'modules.DjangoUser.apps.DjangouserConfig',
 
 ]
 

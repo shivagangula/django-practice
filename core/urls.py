@@ -23,7 +23,7 @@ urlpatterns = [
 
     
     # serializers
-    path('serializer/', include('modules.DrfSerializers.urls')),
+    path('serializer/', include('modules.DrfSerializers.urls', namespace='seri')),
 
     # API Views
     path('employee/<str:uuid>/', Empolyee_curd_operation.as_view(), name="employee_urd"),
