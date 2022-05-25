@@ -1,4 +1,4 @@
-Basic Serializers
+Serializers
     - Normal Serializers
     - Model Serializers
         - Override Create, update Methods
@@ -6,6 +6,10 @@ Basic Serializers
              - Field Level
              - Objcect Level
              - outside Validators
+             - Advanced Validators
+               - UniqueValidator
+               - UniqueTogetherValidator
+               - UniqueForDateValidator, UniqueForMonthValidator, UniqueForYearValidator
         - Partial update
         - serialize and de-serialize multiple objects
         - serializer context
@@ -73,21 +77,21 @@ Serializers Fields
           -ModelField()
           -SerializerMethodField()
        -Custom Fields
-Serializers Relations
--Normal relations
-   - StringReleatedField
-   - PrimaryKeyRelatedField
-   - HyperLinkdeRelatedField
-   - SlugRelatedField
-   - HypyerLinkedIdentityField
-- Nested Relationships
-   - nested de-serializers 
-   - nsested serializers
-- Custom Relation fields
--Custom HyperLinkedFields
--Reverse Relationships
--Generic Relationships
--Many to many relations
+-Serializers Relations
+   -Normal relations
+      - StringReleatedField
+      - PrimaryKeyRelatedField
+      - HyperLinkdeRelatedField
+      - SlugRelatedField
+      - HypyerLinkedIdentityField
+   - Nested Relationships
+      - nested de-serializers 
+      - nsested serializers
+   - Custom Relation fields
+   -Custom HyperLinkedFields
+   -Reverse Relationships
+   -Generic Relationships
+   -Many to many relations
 
 
            

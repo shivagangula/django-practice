@@ -21,6 +21,9 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('sql_rel/', include('modules.SqlRel.urls')),
 
+    
+    # serializers
+    path('serializer/', include('modules.DrfSerializers.urls')),
 
     # API Views
     path('employee/<str:uuid>/', Empolyee_curd_operation.as_view(), name="employee_urd"),

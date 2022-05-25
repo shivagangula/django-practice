@@ -1,3 +1,8 @@
 from django.contrib import admin
+from .models.model_serializer import Forest
 
-# Register your models here.
+
+@admin.register(Forest)
+class ForestAdmin(admin.ModelAdmin):
+    list_display  = ['name', 'tree_count', 'location']
+
