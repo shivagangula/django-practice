@@ -25,6 +25,10 @@ urlpatterns = [
     # serializers
     path('serializer/', include('modules.DrfSerializers.urls', namespace='seri')),
 
+    #user
+    path('user/', include('modules.DjangoUser.urls', namespace='user_endpoint')),
+
+
     # API Views
     path('employee/<str:uuid>/', Empolyee_curd_operation.as_view(), name="employee_urd"),
     path('employee/', Empolyee_create_list.as_view(),name="employee_lc"),

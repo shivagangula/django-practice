@@ -28,7 +28,6 @@ class ForestSerializerHyper(serializers.ModelSerializer):
         model = Forest
         fields = ['id','url', 'forest_name', 'tree_count', 'location']
 
-from rest_framework import viewsets
 
 class HyperLinkedSerializerAPI(generics.GenericAPIView):
 
