@@ -38,10 +38,16 @@ class UserManager(BaseUserManager):
         return user
 
 
+# here we are replaced default user table
 class User(AbstractBaseUser, PermissionsMixin):
     uuid = models.UUIDField(default=uuid.uuid4, editable=False)
     email = models.EmailField(_('email'), unique=True)
     password = models.CharField(max_length=100)
+    first_name = models.CharField(max_length=25, default="DATA_EMPTY")
+    middle_name = models.CharField(max_length=25, default="DATA_EMPTY")
+    last_name = models.CharField(max_length=25, default="DATA_EMPTY")
+    mobile_number = models.IntegerField(default=000000000)
+    is_premium = models.BooleanField(default=False) 
 
     # these field need for default for abstractbase user
     is_active = models.BooleanField(default=True)
@@ -55,24 +61,7 @@ class User(AbstractBaseUser, PermissionsMixin):
 
 
     def __str__(self):
-        return str(self.uuid)
-
-
-class UserProfile(models.Model):
-    user = models.OneToOneField(
-        User,
-        on_delete=models.CASCADE,
-        primary_key=True,
-    )
-    first_name = models.CharField(max_length=25)
-    middle_name = models.CharField(max_length=25)
-    last_name = models.CharField(max_length=25)
-    mobile_number = models.IntegerField()
-    is_premium = models.BooleanField(default=False)
-   
-    
-
-
+        return f"{str(self.uuid)} : {self.first_name}"
 
 
 #CUSTOM USER MIGRATION ISSUE
@@ -83,3 +72,5 @@ class UserProfile(models.Model):
 # comment admin app in settings, urls 
 # run migrations
 # un comment everything
+
+

@@ -4,8 +4,12 @@ cd django-practice
 
 python manage.py runserver
 
-python manage.py makemigrations one_class_views
-
-python manage.py makemigrations query_test
+python manage.py makemigrations 
 
 python manage.py migrate
+
+python manage.py createsuperuser
+
+python manage.py migrate --fake
+
+python manage.py migrate --runsyncdb
