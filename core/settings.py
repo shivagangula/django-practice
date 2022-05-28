@@ -37,6 +37,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+     'rest_framework.authtoken',
+     'rest_framework_simplejwt',
+     'rest_framework_simplejwt.token_blacklist',
     'modules.SqlRel.apps.SqlrelConfig',
     'modules.DjangoFeatures.apps.DjangofeaturesConfig',
     'modules.DrfViews.apps.DrfviewsConfig',
@@ -132,3 +135,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL = 'DjangoUser.User'
 
 
+from datetime import timedelta
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=1)
+    }

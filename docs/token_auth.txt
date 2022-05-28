@@ -1,0 +1,3 @@
+derf token auth implemention steps 
+- add token_auth app in installed app
+- run migrate

@@ -3,10 +3,15 @@ from rest_framework import serializers
 from rest_framework.validators import UniqueValidator
 from django.contrib.auth.password_validation import validate_password
 
+
+
 class UserSerializer(serializers.ModelSerializer):
+    
+    user_query = User.objects.all()
+ 
     email = serializers.EmailField(
             required=True,
-            validators=[UniqueValidator(queryset=User.objects.all(), message="Email already exsited")]
+            validators=[UniqueValidator(queryset= user_query, message="Email already exsited")]
             )
 
     password = serializers.CharField(write_only=True, required=True, validators=[validate_password])
@@ -14,7 +19,7 @@ class UserSerializer(serializers.ModelSerializer):
     first_name = serializers.CharField(max_length=25, required=True)
     middle_name = serializers.CharField(max_length=25, required=True)
     last_name = serializers.CharField(max_length=25, required=True)
-    mobile_number = serializers.IntegerField(required=True, validators=[UniqueValidator(queryset=User.objects.all(), message="Mobile already exsited")] )
+    mobile_number = serializers.IntegerField(required=True, validators=[UniqueValidator(queryset= user_query, message="Mobile already exsited")] )
     is_premium = serializers.BooleanField(default=False, required=False)
 
     class Meta:

@@ -27,7 +27,6 @@ class Signup2(generics.GenericAPIView):
 
 
 class Signup(generics.CreateAPIView):
-    queryset = User.objects.all()
     permission_classes = (AllowAny,)
     serializer_class = UserSerializer
     renderer_classes = [SerializerDataRender]

@@ -1,0 +1,7 @@
+- pip install djangorestframework_simplejwt
+
+- add in installed apps ' rest_framework_simplejwt '
+
+- we can overide or native set views from rest_framework_simplejwt
+
+- we can set token config in settings
