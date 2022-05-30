@@ -1,15 +1,24 @@
+# activating virtuale enviroment
 .\wenv\Scripts\activate
 
 cd django-practice
 
 python manage.py runserver
 
+# Migrations 
+
 python manage.py makemigrations 
 
 python manage.py migrate
 
-python manage.py createsuperuser
-
 python manage.py migrate --fake
 
 python manage.py migrate --runsyncdb
+
+# unsorted
+python manage.py createsuperuser
+Set-ExecutionPolicy -ExecutionPolicy Bypass -Scope Process -Force ( enabling env in powershell )
+ 
+
+# test commands
+python manage.py test --verbosity=2
