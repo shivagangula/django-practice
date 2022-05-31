@@ -20,7 +20,7 @@ class UserAuthTest(TestSetUp):
          
         self.client.credentials(HTTP_AUTHORIZATION=f'Bearer {self.jwt_access_token}')
         
-        self.assart_log(res= res,fun_name = inspect.stack()[0][3] ,sc= 200)
+        self.assert_status_code(res= res,fun_name = inspect.stack()[0][3] ,sc= 200)
 
     
     def refresh_token_view_test(self):
@@ -34,7 +34,7 @@ class UserAuthTest(TestSetUp):
         #self.jwt_access_token = res['data']['access'] 
 
 
-        self.assart_log(res= res,fun_name = inspect.stack()[0][3] ,sc= 200)
+        self.assert_status_code(res= res,fun_name = inspect.stack()[0][3] ,sc= 200)
 
 
 

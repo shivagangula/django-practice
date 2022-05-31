@@ -20,3 +20,4 @@ class TableTwo(CommonFieldMixinModel):
     table_one_data =  models.ForeignKey(TableOne, on_delete= models.CASCADE)
     data = models.CharField(max_length=12, blank=False, null=False)
     
+

@@ -6,4 +6,4 @@ class ProtectedViewTest(TestSetUp):
                 self.protectedview_url,
                 format='json')
             
-            self.assart_log(res= res,fun_name = inspect.stack()[0][3] ,sc= 401)
+            self.assert_status_code(res= res,fun_name = inspect.stack()[0][3] ,sc= 401)

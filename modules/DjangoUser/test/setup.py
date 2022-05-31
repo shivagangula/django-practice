@@ -18,10 +18,10 @@ fake = Faker()
 
 
 class console:
-    def assart_log(self, fun_name, res, sc):
+    def assert_status_code(self, fun_name, res, sc):
         fun_name_len = len(fun_name)
         try:
-            original_space = (35 - fun_name_len) * ' '
+            original_space = (45 - fun_name_len) * ' '
             self.assertEqual(res.status_code, sc,
                          msg=f"{fun_name} status code wrong")
             print(f"{Fore.GREEN} \u2620 {fun_name} {original_space} : Test Passed !")

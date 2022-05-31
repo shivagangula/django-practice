@@ -47,18 +47,18 @@ class JWTLogout(generics.GenericAPIView):
             refresh_token = request.data["refresh"]
             token = RefreshToken(refresh_token)
             token.blacklist()
-
             return Response({"status":"succuss"},status=status.HTTP_205_RESET_CONTENT)
         except Exception as e:
             print(e)
-            return Response({"status":"succuss"},status=status.HTTP_400_BAD_REQUEST)
-
+            return Response({"status":"failed"},status=status.HTTP_400_BAD_REQUEST)
 
 class RestrectedViewTest(generics.GenericAPIView):
     permission_classes = [IsAuthenticated]
     #authentication_classes = [TokenAuthentication]
     authentication_classes = [JWTAuthentication]
-
     renderer_classes  = [SerializerDataRender]
+
+    
     def get(self, request, *args, **kwargs):
+        
         return Response({"status":"succuss"})
