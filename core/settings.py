@@ -47,6 +47,8 @@ INSTALLED_APPS = [
     'modules.DrfRenders.apps.DrfrendersConfig' ,
     'modules.DrfSerializers.apps.DrfserializersConfig' ,
     'modules.DjangoUser.apps.DjangouserConfig',
+    'modules.rest_permissions.apps.RestPermissionsConfig',
+    
 
 ]
 

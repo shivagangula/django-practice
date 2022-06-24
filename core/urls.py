@@ -28,6 +28,9 @@ urlpatterns = [
     #user
     path('user/', include('modules.DjangoUser.urls', namespace='user_endpoint')),
 
+    #rest_permissions
+    path('permissions/', include('modules.rest_permissions.urls', namespace='user_permissions')),
+
 
     # API Views
     path('employee/<str:uuid>/', Empolyee_curd_operation.as_view(), name="employee_urd"),
